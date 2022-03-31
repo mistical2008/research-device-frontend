@@ -5,11 +5,7 @@ import { withProviders } from 'app/providers'
 import './index.css'
 
 function App() {
-    return (
-        <>
-            <Routing />
-        </>
-    )
+    return <Routing />
 }
 
 export default withProviders(App)
