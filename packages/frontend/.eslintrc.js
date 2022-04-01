@@ -26,6 +26,9 @@ module.exports = {
     ],
     parser: '@typescript-eslint/parser',
     settings: {
+        react: {
+            version: 'detect',
+        },
         'import/resolver': {
             typescript: {
                 alwaysTryTypes: true,
