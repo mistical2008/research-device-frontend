@@ -10,6 +10,7 @@ import {
     runOnInterval,
     timerToInt,
 } from './lib/utils'
+import 'dotenv/config'
 
 const port = process.env.PORT || 3000
 const server = fastify()
