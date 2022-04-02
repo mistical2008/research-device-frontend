@@ -23,7 +23,8 @@
         "react-query": "^3.34.19",
         "react-router-dom": "^6.2.2",
         "recoil": "^0.6.1",
-        "simple-appointment-calendar": "link:"
+        "simple-appointment-calendar": "link:",
+        "socket.io-client": "^4.4.1"
     },
     "devDependencies": {
         "@babel/core": ">=7.11.5 <8.0.0",
