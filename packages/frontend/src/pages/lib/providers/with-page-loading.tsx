@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
-import { PagePreloader } from '~shared/ui'
+
+import { PagePreloader } from 'shared/ui'
 
 function withPageLoading(Page: React.ReactNode) {
     return (
