@@ -1,29 +1,20 @@
-import { Button, Space, Typography } from 'antd'
-import { useState } from 'react'
+import { Card, Col, Row } from 'antd'
 
 function ExperimentsPage() {
-    const initialState = 1
-    const [count, setCount] = useState(initialState)
+    const experiments = Array.from({ length: 11 }, (_, index) => index + 1)
+    const cardStyle = { marginTop: '10px' }
 
     return (
-        <Space
-            direction="vertical"
-            align="center"
-            style={{
-                display: 'flex',
-                justifyContent: 'center',
-                width: '100%',
-                height: '100%',
-            }}
-        >
-            <Typography.Title level={2}>
-                Welcome to the Experiments page
-            </Typography.Title>
-            <Button type="primary" onClick={() => setCount(count + 1)}>
-                count: {count}
-            </Button>
-            <Button onClick={() => setCount(initialState)}>Reset count</Button>
-        </Space>
+        <Row gutter={16}>
+            {experiments.map((experiment) => (
+                <Col span={4} key={experiment}>
+                    <Card
+                        title={`Эксперимент: ${experiment}`}
+                        style={cardStyle}
+                    ></Card>
+                </Col>
+            ))}
+        </Row>
     )
 }
 
