@@ -1,12 +1,6 @@
 import { Card, Col, Row } from 'antd'
-import { useState } from 'react'
-
-import { ToggleButton } from '~entities/ToggleButton'
 
 function SingleExperimentPage() {
-    const [started, setStarted] = useState(false)
-    const handleClick = () => setStarted(!started)
-
     return (
         <>
             <Row gutter={[16, 16]} style={{ height: '50%' }}>
@@ -30,10 +24,6 @@ function SingleExperimentPage() {
                     <Card title="Табличная часть эксперимента">
                         <div id="experiment-data-table" />
                     </Card>
-                </Col>
-                <Col span={12}>
-                    {/* TODO: add sections - [x] кнопка "Начать эксперимент" */}
-                    <ToggleButton onClick={handleClick} isToggled={started} />
                 </Col>
             </Row>
         </>

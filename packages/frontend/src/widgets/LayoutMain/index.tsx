@@ -4,15 +4,19 @@ import { AiOutlineHeatMap, AiOutlinePoweroff } from 'react-icons/ai'
 import { BsThermometerHalf } from 'react-icons/bs'
 import { GiElectric } from 'react-icons/gi'
 import { Link, Outlet } from 'react-router-dom'
+import {isStarted, toggleExperiment} from 'features/experiment-runner'
+import { useStore } from '@nanostores/react'
 
 import { routesCollection as routes } from 'shared/config/routes'
 
 import { Breadcrumbs } from 'features'
+import { ToggleButton } from 'entities/ToggleButton'
 
 const { Header, Content, Sider } = Layout
 
 function LayoutMain() {
     const [asideCollapsed, setAsideCollapsed] = useState(false)
+    const isToggled = useStore(isStarted)
 
     return (
         <Layout>
@@ -30,6 +34,7 @@ function LayoutMain() {
                         theme="dark"
                         mode="horizontal"
                         defaultSelectedKeys={['1']}
+                        style={{ marginRight: 'auto' }}
                     >
                         <Menu.Item key="1">
                             <Link to={routes.home.basePath}>
@@ -48,8 +53,7 @@ function LayoutMain() {
                             </Link>
                         </Menu.Item>
                     </Menu>
-                    {/* TODO: Start experiment button which navigates to a currently started experiment */}
-                    {/* TODO: device metadata */}
+                    <ToggleButton isToggled={isToggled} onClick={toggleExperiment} />
                 </Header>
                 <Content
                     style={{
@@ -89,7 +93,7 @@ function LayoutMain() {
                             key="power-state"
                             icon={<AiOutlinePoweroff />}
                         >
-                            (вкл/выкл)
+                            {isToggled ? 'Включен' : 'Выключен'}
                         </Menu.Item>
                         <Menu.Item key="voltage-state" icon={<GiElectric />}>
                             11В
