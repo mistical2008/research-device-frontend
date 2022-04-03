@@ -13,6 +13,7 @@
         "gen:mockdb": "node -r @swc-node/register scripts/gen-mock-db.ts"
     },
     "dependencies": {
+        "@nanostores/react": "^0.2.0",
         "antd": "^4.19.3",
         "axios": "^0.26.1",
         "fp-ts": "^2.11.9",
