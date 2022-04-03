@@ -80,9 +80,11 @@ importers:
       less: ^4.1.2
       msw: ^0.39.2
       nanoid: ^3.3.2
+      nanostores: ^0.5.12
       prettier: ^2.6.1
       react: ^18.0.0
       react-dom: ^18.0.0
+      react-icons: ^4.3.1
       react-query: ^3.34.19
       react-router-dom: ^6.2.2
       recoil: ^0.6.1
@@ -102,8 +104,10 @@ importers:
       fp-ts: 2.11.9
       framer-motion: 6.2.8_react-dom@18.0.0+react@18.0.0
       nanoid: 3.3.2
+      nanostores: 0.5.12
       react: 18.0.0
       react-dom: 18.0.0_react@18.0.0
+      react-icons: 4.3.1_react@18.0.0
       react-query: 3.34.19_react-dom@18.0.0+react@18.0.0
       react-router-dom: 6.2.2_react-dom@18.0.0+react@18.0.0
       recoil: 0.6.1_react-dom@18.0.0+react@18.0.0
@@ -9275,7 +9279,7 @@ packages:
     engines: {node: '>=12.0.0'}
     dependencies:
       ansi-escapes: 4.3.2
-      chalk: 4.1.1
+      chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-width: 3.0.0
       external-editor: 3.1.0
@@ -11225,6 +11229,11 @@ packages:
       to-regex: 3.0.2
     dev: true
 
+  /nanostores/0.5.12:
+    resolution: {integrity: sha512-5BccS7nNInTc7Noz2gv19gyx5h5y6m72nj6ZnCTV98GdFdwvcFJf2MMl+7VsX76E1toV1YrLqlDn+R+OF73PVg==}
+    engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
+    dev: false
+
   /natural-compare/1.4.0:
     resolution: {integrity: sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=}
     dev: true
@@ -11570,7 +11579,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       bl: 4.1.0
-      chalk: 4.1.1
+      chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
       is-interactive: 1.0.0
@@ -12946,6 +12955,14 @@ packages:
       react-fast-compare: 3.2.0
       shallowequal: 1.1.0
     dev: true
+
+  /react-icons/4.3.1_react@18.0.0:
+    resolution: {integrity: sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.0.0
+    dev: false
 
   /react-inspector/5.1.1_react@18.0.0:
     resolution: {integrity: sha512-GURDaYzoLbW8pMGXwYPDBIv6nqei4kK7LPRZ9q9HCZF54wqXz/dnylBp/kfE9XmekBhHvLDdcYeyIwSrvtOiWg==}
