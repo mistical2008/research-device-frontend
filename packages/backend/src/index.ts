@@ -8,11 +8,12 @@ import {
     logStop,
     renderHtml,
     runOnInterval,
+    stopTimer,
     timerToInt,
 } from './lib/utils'
 import 'dotenv/config'
 
-const port = process.env.PORT || 3000
+const port = process.env.BACKEND_PORT || 3000
 const server = fastify()
 const genRandFload10to100 = genRandFloat(10, 100)
 server.register(fastifyIO)
@@ -33,8 +34,8 @@ server.get('/server-test', (req, reply) => {
 
 server.ready().then(() => {
     server.io.on('connection', (socket) => {
-        let stopTimerOne: () => void
-        let stopTimerTwo: () => void
+        let stopTimerOne: ReturnType<typeof stopTimer>
+        let stopTimerTwo: ReturnType<typeof stopTimer>
 
         socket.emit('msg/server/connect', {
             id: socket.id,

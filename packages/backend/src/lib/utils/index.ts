@@ -25,6 +25,7 @@ function timerToInt(timer: NodeJS.Timer): number {
 
 function stopTimer(timerObj: NodeJS.Timer): () => void {
     return () => {
+        // @ts-ignore
         pipe(timerObj, timerToInt, clearInterval)
     }
 }
@@ -35,7 +36,7 @@ function runOnInterval({
 }: {
     interval: number
     run: (timerObject: NodeJS.Timer) => void
-}): NodeJS.Timer {
+}): ReturnType<typeof stopTimer> {
     const timerObj = setInterval(() => {
         run(timerObj)
     }, interval)
