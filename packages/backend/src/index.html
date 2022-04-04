@@ -24,7 +24,8 @@
         </div>
 
         <script>
-            var socket = io.connect('http://localhost:3000')
+            const socket = io.connect('http://localhost:8900')
+
             socket.on('connect', function (data) {
                 console.log('Connected to server')
             })
