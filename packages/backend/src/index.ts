@@ -34,8 +34,8 @@ server.get('/server-test', (req, reply) => {
 
 server.ready().then(() => {
     server.io.on('connection', (socket) => {
-        let stopTimerOne: ReturnType<typeof stopTimer>
-        let stopTimerTwo: ReturnType<typeof stopTimer>
+        const clearTimerFns: ReturnType<typeof stopTimer>[] = []
+        const intervals = [1500, 2000]
 
         socket.emit('msg/server/connect', {
             id: socket.id,
@@ -46,25 +46,24 @@ server.ready().then(() => {
             socket.emit('test/start', data)
             logStart()
 
-            stopTimerOne = runOnInterval({
-                run: (_timerObj) => {
-                    sendSensorsData(socket)
-                    console.log({ timer: timerToInt(_timerObj) })
-                },
-                interval: 1500,
-            })
-            stopTimerTwo = runOnInterval({
-                run: (_timerObj) => {
-                    sendSensorsData(socket)
-                    console.log({ timer: timerToInt(_timerObj) })
-                },
-                interval: 2000,
+            console.log({ intervals })
+            intervals.forEach((interval) => {
+                console.log({ interval })
+                const clearTimerFn = runOnInterval({
+                    run: (_timerObj) => {
+                        sendSensorsData(socket)
+                        console.log({ timer: timerToInt(_timerObj) })
+                    },
+                    interval,
+                })
+                clearTimerFns.push(clearTimerFn)
             })
         })
 
         socket.on('test/stop', (_data) => {
-            stopTimerOne()
-            stopTimerTwo()
+            clearTimerFns.forEach((clearTimer) => {
+                clearTimer()
+            })
             socket.emit('test/stop')
             logStop()
         })
