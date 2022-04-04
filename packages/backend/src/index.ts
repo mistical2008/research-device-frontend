@@ -46,9 +46,7 @@ server.ready().then(() => {
             socket.emit('test/start', data)
             logStart()
 
-            console.log({ intervals })
             intervals.forEach((interval) => {
-                console.log({ interval })
                 const clearTimerFn = runOnInterval({
                     run: (_timerObj) => {
                         sendSensorsData(socket)
