@@ -1,6 +1,7 @@
 import { flow } from 'fp-ts/function'
 
+import { withExperimentState } from 'app/providers/with-experiment-state'
+import { withRecoil } from 'app/providers/with-recoil'
 import { withRouter } from 'app/providers/with-router'
-import { withReactQuery } from './with-react-query'
 
-export const withProviders = flow(withReactQuery, withRouter)
+export const withProviders = flow(withExperimentState, withRecoil, withRouter)

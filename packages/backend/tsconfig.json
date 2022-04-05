@@ -1,15 +1,13 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "es2018",
-    "module": "commonjs",
+    "composite": true,
     "lib": ["esnext"],
     "esModuleInterop": true,
     // equivalent of package.json sideEffects: false
     "isolatedModules": true,
     "sourceMap": true,
     "declaration": true,
-
-    "strict": true,
     "noImplicitAny": false,
     "noUncheckedIndexedAccess": false,
     "noImplicitReturns": true,
@@ -17,6 +15,6 @@
     "useUnknownInCatchVariables": false,
     "skipDefaultLibCheck": true
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "dist"],
   "include": ["src"]
 }

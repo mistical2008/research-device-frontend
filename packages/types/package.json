@@ -1,0 +1,25 @@
+{
+  "name": "@shared/types",
+  "version": "0.0.1",
+  "description": "Shared project types",
+  "private": true,
+  "main": "",
+  "types": [
+    "dist/index.d.ts"
+  ],
+  "author": "Talko Evgeniy <etalko@gmail.com>",
+  "files": [
+    "dist/index.d.ts",
+    "src/index.ts"
+  ],
+  "scripts": {
+    "dev": "echo \"Error: Script dev not implemented\"",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "socket.io": "^4.4.1"
+  }
+}

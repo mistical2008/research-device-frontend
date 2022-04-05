@@ -1,6 +1,4 @@
-export * from './appointments'
-export * from './teachers'
-export * from './subjects'
-export * from './api'
+export * from './websocket'
+export * from './rest'
 export * from './types'
 // export * from '.'

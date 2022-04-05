@@ -2,13 +2,51 @@
   "name": "research-device-frontend",
   "private": true,
   "version": "0.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "pnpm -r dev"
+    "test": "pnpm -r test",
+    "dev": "pnpm -r dev --filter=backend --filter=frontend"
   },
   "keywords": [],
-  "author": "",
-  "license": "MIT"
+  "author": "Talko Evgeniy <etalko@gmail.com>",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "eslint-import-resolver-node": "^0.3.6",
+    "eslint-import-resolver-typescript": "^2.7.0",
+    "eslint-module-utils": "^2.7.3",
+    "ast-types-flow": "^0.0.7",
+    "ast-types": "^0.14.2",
+    "eslint-plugin-boundaries": "^2.9.0",
+    "eslint-plugin-fp-ts": "^0.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-listeners": "^1.1.0",
+    "eslint-plugin-react-hooks": "^4.4.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-rule-composer": "^0.3.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "eslint-plugin-sonarjs": "^0.13.0",
+    "eslint-visitor-keys": "^3.3.0",
+    "eslint-plugin-use-encapsulation": "^1.0.0",
+    "mime-types": "^2.1.35",
+    "eslint-utils": "^3.0.0",
+    "typescript": "^4.6.3",
+    "eslint": "^8.12.0",
+    "eslint-scope": "^7.1.1",
+    "react-docgen-typescript": "^2.2.2",
+    "style-value-types": "^5.0.0",
+    "prop-types": "^15.8.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mistical2008/research-device-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mistical2008/research-device-frontend/issues"
+  },
+  "homepage": "https://github.com/mistical2008/research-device-frontend#readme"
 }

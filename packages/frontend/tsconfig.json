@@ -1,5 +1,7 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "composite": true,
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -17,7 +19,7 @@
     "jsx": "react-jsx",
     "baseUrl": "./src",
     "paths": {
-      "~*": [ "./*" ],
+      "~*": [ "../*" ],
       "src/*": [ "./*" ],
       "@/*": [ "../node_modules/*" ],
       "app/*": [ "./app/*" ],
@@ -27,8 +29,8 @@
       "features/*": [ "./features/*" ],
       "entities/*": [ "./entities/*" ],
       "shared/*": [ "./shared/*" ]
-    }
+    },
   },
   "include": ["src", "scripts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.node.json" }, { "path": "../types/" }]
 }

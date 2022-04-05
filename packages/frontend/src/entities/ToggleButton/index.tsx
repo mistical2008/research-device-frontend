@@ -1,26 +1,26 @@
 import { Button } from 'antd'
 
 type Props = {
-    isToggled: boolean
+    isOn: boolean
     onClick: () => void
     toggledText?: string
     untoggledText?: string
 }
 
 function ToggleButton({
-    isToggled,
+    isOn,
     onClick,
     toggledText = 'Стоп',
     untoggledText = 'Старт',
 }: Props) {
     return (
         <Button
-            type={isToggled ? 'default' : 'primary'}
+            type={isOn ? 'default' : 'primary'}
             shape="round"
             size="large"
             onClick={onClick}
         >
-            {isToggled ? toggledText : untoggledText}
+            {isOn ? toggledText : untoggledText}
         </Button>
     )
 }
