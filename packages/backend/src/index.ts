@@ -23,6 +23,13 @@ function sendSensorsData(socket: any): void {
         id: socket.id,
         timestamp: Date.now(),
         value: genRandFload10to100(),
+server.register(fastifyIO, {
+    cors: {
+        origin: '*',
+        methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE', 'PATCH'],
+    },
+})
+
     })
 }
 server.get('/server-test', (req, reply) => {
