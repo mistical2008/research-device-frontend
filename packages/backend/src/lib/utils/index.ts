@@ -1,5 +1,12 @@
 import { pipe } from 'fp-ts/function'
 import { readFile } from 'fs/promises'
+import {
+    ServerToClientEvents,
+    SocketIOType,
+    WebsocketClientCmd,
+    WebsocketMessage,
+    WebsocketMessageSource,
+} from '../../types'
 
 function logStart(): void {
     console.log(`TEST STARTED`)
@@ -45,8 +52,24 @@ function runOnInterval({
     return stopTimer(timerObj)
 }
 
-function emitData(msg: string = 'msg/data', socket: any, data: any) {
-    socket.emit(msg, data)
+function emitData(
+    socket: SocketIOType,
+    event: keyof ServerToClientEvents,
+    msg: WebsocketMessage
+) {
+    socket.emit(event, msg)
+}
+
+function isClient(src: WebsocketMessageSource) {
+    return src === 'client'
+}
+
+function isTestStart(cmd: WebsocketClientCmd) {
+    return cmd === 'test:start'
+}
+
+function isTestStop(cmd: WebsocketClientCmd) {
+    return cmd === 'test:stop'
 }
 
 export {
@@ -58,4 +81,7 @@ export {
     logStop,
     emitData,
     renderHtml,
+    isClient,
+    isTestStart,
+    isTestStop,
 }

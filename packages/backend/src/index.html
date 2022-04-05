@@ -30,9 +30,10 @@
                 console.log('Connected to server')
             })
 
-            socket.on('msg/server/send', (data) => {
-                socket.emit('msg/client/send', data)
-                console.log(data)
+            socket.on('message', (data) => {
+                if (data.source === 'server' && data.cmd === 'data') {
+                    console.log({ data })
+                }
             })
 
             socket.on('disconnecting', function (data) {
@@ -40,12 +41,12 @@
             })
 
             document.querySelector('#start').addEventListener('click', () => {
-                socket.emit('test/start')
+                socket.emit('message', { cmd: 'test:start', source: 'client' })
                 console.log('Test started')
             })
 
             document.querySelector('#stop').addEventListener('click', () => {
-                socket.emit('test/stop')
+                socket.emit('message', { cmd: 'test:stop', source: 'client' })
                 console.log('Test stopped')
             })
         </script>

@@ -4,6 +4,9 @@ import path from 'path'
 import {
     emitData,
     genRandFloat,
+    isClient,
+    isTestStart,
+    isTestStop,
     logStart,
     logStop,
     renderHtml,
@@ -12,17 +15,13 @@ import {
     timerToInt,
 } from './lib/utils'
 import 'dotenv/config'
+import { nanoid } from 'nanoid'
+import { NanoId, SocketIOType, WebsocketMessagePayload } from './types'
 
 const port = process.env.BACKEND_PORT || 3000
 const server = fastify()
 const genRandFload10to100 = genRandFloat(10, 100)
-server.register(fastifyIO)
 
-function sendSensorsData(socket: any): void {
-    emitData('msg/server/send', socket, {
-        id: socket.id,
-        timestamp: Date.now(),
-        value: genRandFload10to100(),
 server.register(fastifyIO, {
     cors: {
         origin: '*',
@@ -30,9 +29,18 @@ server.register(fastifyIO, {
     },
 })
 
+function sendSensorsData(socket: SocketIOType, sensorId: NanoId): void {
+    emitData(socket, 'message', {
+        payload: {
+            sensorId,
+            timestamp: Date.now(),
+            value: genRandFload10to100(),
+        },
+        cmd: 'data',
+        source: 'server',
     })
 }
-server.get('/server-test', (req, reply) => {
+server.get('/server-test', (_req, reply) => {
     server.io.emit('hello')
 
     console.log('hello')
@@ -49,32 +57,34 @@ server.ready().then(() => {
             timestamp: Date.now(),
         })
 
-        socket.on('test/start', (data) => {
-            socket.emit('test/start', data)
-            logStart()
-
-            intervals.forEach((interval) => {
-                const clearTimerFn = runOnInterval({
-                    run: (_timerObj) => {
-                        sendSensorsData(socket)
-                        console.log({ timer: timerToInt(_timerObj) })
-                    },
-                    interval,
+        socket.on('message', ({ cmd, source }) => {
+            if (isClient(source) && isTestStop(cmd)) {
+                clearTimerFns.forEach((clearTimer) => {
+                    clearTimer()
                 })
-                clearTimerFns.push(clearTimerFn)
-            })
+                clearTimerFns.length = 0
+                logStop()
+            }
+            if (isClient(source) && isTestStart(cmd)) {
+                logStart()
+
+                intervals.forEach((interval) => {
+                    const sensorId = nanoid()
+
+                    const clearTimerFn = runOnInterval({
+                        run: (_timerObj) => {
+                            sendSensorsData(socket, sensorId)
+                            console.log({ timer: timerToInt(_timerObj) })
+                        },
+                        interval,
+                    })
+                    clearTimerFns.push(clearTimerFn)
+                })
+            }
         })
 
-        socket.on('test/stop', (_data) => {
-            clearTimerFns.forEach((clearTimer) => {
-                clearTimer()
-            })
-            socket.emit('test/stop')
-            logStop()
-        })
-
-        socket.on('msg/client/send', (data) => {
-            console.log('msg/client/send', data)
+        socket.on('msg/client', (cmd) => {
+            console.log('msg/client', cmd)
         })
     })
 
