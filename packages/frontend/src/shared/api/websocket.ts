@@ -8,7 +8,7 @@ import {
     WebsocketMessageHandler,
 } from 'shared/lib/types'
 
-export function useSession(
+function useSession(
     onOpen: WebsocketMessageHandler,
     onMessage: WebsocketMessageHandler,
     onClose: WebsocketMessageHandler
@@ -67,3 +67,5 @@ export function useSession(
 
     return { connect, sendMessage, close }
 }
+
+export { useSession }

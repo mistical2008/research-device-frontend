@@ -16,7 +16,7 @@ type WebsocketMessagePayload = {
 type WebsocketMessage = {
     source: WebsocketMessageSource
     cmd: WebsocketCmd
-    payload: WebsocketMessagePayload
+    payload?: WebsocketMessagePayload
 }
 
 type WebsocketMessageHandler = (message: WebsocketMessage) => void
