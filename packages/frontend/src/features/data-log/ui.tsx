@@ -7,9 +7,10 @@ import { WebsocketMessage } from '@app/types'
 type Props = {
     children?: React.ReactNode
     dataset: WebsocketMessage['payload'][] | []
+    height?: number
 }
 
-function DataLog({ dataset = [] }: Props) {
+function DataLog({ dataset = [], height = 300 }: Props) {
     const parentRef = useRef<HTMLDivElement>()
 
     const rowVirtualizer = useVirtual({
@@ -26,7 +27,7 @@ function DataLog({ dataset = [] }: Props) {
                         ref={parentRef}
                         className="List"
                         style={{
-                            height: `300px`,
+                            height: `${height}px`,
                             width: `100%`,
                             overflow: 'auto',
                         }}

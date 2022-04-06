@@ -17,7 +17,7 @@ function SingleExperimentPage() {
                 </Col>
                 <Col span={12}>
                     <Card title="Окно с логом приходящих данных">
-                        <DataLog dataset={dataset} />
+                        <DataLog dataset={dataset} height={500} />
                     </Card>
                 </Col>
                 <Col span={12}>
