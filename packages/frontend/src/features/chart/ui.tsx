@@ -1,14 +1,34 @@
-import { WebsocketMessage } from '@app/types'
+import { LineChart, Line, ResponsiveContainer, XAxis, YAxis } from 'recharts'
+
+import { DatasetBySensors } from '../experiment-runner/types'
 
 type Props = {
     children?: React.ReactNode
-    dataset: WebsocketMessage['payload'][] | []
+    // dataset: DatasetBySensors[] | []
+    dataset: DatasetBySensors | {}
 }
-const Chart = ({ dataset }: Props) => {
+
+function Chart({ dataset }: Props) {
     return (
-        <code>
-            <pre>Chart: {JSON.stringify(dataset, null, 2)}</pre>
-        </code>
+        <ResponsiveContainer width={'100%'} height={500}>
+            <LineChart width={500} height={500}>
+                <XAxis dataKey="timestamp" />
+                <YAxis dataKey="value" />
+                {Object.keys(dataset).map((sensorId) => {
+                    return (
+                        <Line
+                            key={sensorId}
+                            type="monotone"
+                            dataKey="value"
+                            data={dataset[sensorId]}
+                            stroke={`#${Math.floor(
+                                Math.random() * 16777215
+                            ).toString(16)}`}
+                        />
+                    )
+                })}
+            </LineChart>
+        </ResponsiveContainer>
     )
 }
 

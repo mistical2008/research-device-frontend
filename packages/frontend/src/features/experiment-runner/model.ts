@@ -46,4 +46,20 @@ const experimentDataset = atom<WebsocketMessage['payload'][]>({
     ],
 })
 
-export { status, isStarted, experimentDataset }
+const datasetBySensors = selector({
+    key: 'datasetBySensors',
+    get: ({ get }) => {
+        const dataset = get(experimentDataset)
+        const sensors = dataset
+            .map((payload) => payload?.sensorId)
+            .filter(Boolean)
+
+        return sensors.reduce((acc, id) => {
+            // @ts-expect-error
+            acc[id] = dataset.filter(({ sensorId }) => id === sensorId)
+            return acc
+        }, {})
+    },
+})
+
+export { status, isStarted, experimentDataset, datasetBySensors }

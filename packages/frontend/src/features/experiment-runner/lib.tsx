@@ -11,12 +11,16 @@ import {
 
 import { WebsocketMessage } from '@app/types'
 
+import { datasetBySensors } from './model'
+import { DatasetBySensors } from './types'
+
 interface ContextValue {
     start: () => void
     stop: () => void
     toggle: () => void
     started: boolean
     dataset: WebsocketMessage['payload'][]
+    datasetBySensors: DatasetBySensors
 }
 const ExperimentContext = React.createContext<ContextValue | null>(null)
 ExperimentContext.displayName = 'ExperimentContext'
@@ -25,6 +29,7 @@ function ExperimentProvider({ children }: React.PropsWithChildren<{}>) {
     const setStatus = useSetRecoilState(status)
     const started = useRecoilValue(isStarted)
     const [dataset, setDataset] = useRecoilState(experimentDataset)
+    const bySensors = useRecoilValue(datasetBySensors)
     const { connect, close, sendMessage } = useSession(
         () => console.log('Connected to websocket'),
         (data) => setDataset([...dataset, data.payload]),
@@ -55,7 +60,14 @@ function ExperimentProvider({ children }: React.PropsWithChildren<{}>) {
 
     return (
         <ExperimentContext.Provider
-            value={{ started, dataset, start, stop, toggle }}
+            value={{
+                started,
+                dataset,
+                start,
+                stop,
+                toggle,
+                datasetBySensors: bySensors,
+            }}
         >
             {children}
         </ExperimentContext.Provider>

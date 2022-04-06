@@ -4,18 +4,13 @@ import { useExperiment } from 'src/features'
 import { Chart } from 'src/features/chart'
 
 function SingleExperimentPage() {
-    const { dataset } = useExperiment()
+    const { datasetBySensors } = useExperiment()
     return (
         <>
             <Row gutter={[16, 16]} style={{ height: '50%' }}>
                 <Col span={24}>
-                    {/* TODO: add sections - содержит основной график эксперимента */}
-                    {/* Some references */}
-                    {/* https://apexcharts.com/react-chart-demos/line-charts/realtime/ */}
-                    {/* https://www.ag-grid.com/react-charts/gallery/real-time-data-updates/ */}
                     <Card title="Основной график эксперимента">
-                        <div id="experiment-chart" />
-                        <Chart dataset={dataset} />
+                        <Chart dataset={datasetBySensors} />
                     </Card>
                 </Col>
                 <Col span={12}>
