@@ -21,7 +21,7 @@ import { NanoId, SocketIOType } from '@app/types'
 const port = process.env.BACKEND_PORT || 3000
 const server = fastify()
 const genRandFload10to100 = genRandFloat(10, 100)
-const intervals = [1500, 2000]
+const intervals = [10, 200]
 const sensors = intervals.map((_i) => {
     return nanoid()
 })
