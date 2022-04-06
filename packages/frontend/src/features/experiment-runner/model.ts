@@ -1,4 +1,9 @@
 import { atom, selector } from 'recoil'
+
+import consoleConf from 'shared/config/console'
+
+import { WebsocketMessage } from '@app/types'
+
 type ExperimentStatus = 'idle' | 'started' | 'stopped'
 
 const status = atom<ExperimentStatus>({
@@ -7,7 +12,11 @@ const status = atom<ExperimentStatus>({
     effects: [
         ({ onSet }) => {
             onSet((status) => {
-                console.debug('Current status:', status)
+                console.debug(
+                    '%cCurrent status:',
+                    consoleConf.styles.stateActions.experiment.status,
+                    status
+                )
             })
         },
     ],
@@ -21,4 +30,20 @@ const isStarted = selector({
     },
 })
 
-export { status, isStarted }
+const experimentDataset = atom<WebsocketMessage['payload'][]>({
+    key: 'dataset',
+    default: [],
+    effects: [
+        ({ onSet }) => {
+            onSet((data) => {
+                console.debug(
+                    '%cDATASET: %o',
+                    consoleConf.styles.stateActions.experiment.dataset,
+                    data
+                )
+            })
+        },
+    ],
+})
+
+export { status, isStarted, experimentDataset }
