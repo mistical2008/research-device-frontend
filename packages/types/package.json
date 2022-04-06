@@ -1,5 +1,5 @@
 {
-  "name": "@shared/types",
+  "name": "@app/types",
   "version": "0.0.1",
   "description": "Shared project types",
   "private": true,
@@ -9,12 +9,15 @@
   ],
   "author": "Talko Evgeniy <etalko@gmail.com>",
   "files": [
-    "dist/index.d.ts",
-    "src/index.ts"
+    "dist",
+    "src",
+    "package.json"
   ],
   "scripts": {
     "dev": "echo \"Error: Script dev not implemented\"",
-    "build": "tsc"
+    "build": "pnpm clean && pnpm compile",
+    "clean": "npx rimraf ./dist",
+    "compile": "tsc -p tsconfig.build.json"
   },
   "devDependencies": {
     "typescript": "^4.6.3"

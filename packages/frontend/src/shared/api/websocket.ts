@@ -1,19 +1,22 @@
 import { useCallback, useEffect, useState, EffectCallback } from 'react'
-import { io } from 'socket.io-client'
+import { io, Socket } from 'socket.io-client'
 
 import { websocketConfig } from 'shared/config/websocket'
+
 import {
-    SocketIOType,
     WebsocketMessage,
     WebsocketMessageHandler,
-} from 'shared/lib/types'
+} from '@app/types'
 
 function useSession(
     onOpen: WebsocketMessageHandler,
     onMessage: WebsocketMessageHandler,
     onClose: WebsocketMessageHandler
 ) {
-    const [session, setSession] = useState(null as unknown as SocketIOType)
+    const [session, setSession] = useState(
+        // null as unknown as SocketIOClientType
+        null as unknown as Socket
+    )
 
     type CreateHandlerArgs = {
         event: any

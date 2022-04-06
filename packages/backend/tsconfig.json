@@ -1,20 +1,3 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "composite": true,
-    "lib": ["esnext"],
-    "esModuleInterop": true,
-    // equivalent of package.json sideEffects: false
-    "isolatedModules": true,
-    "sourceMap": true,
-    "declaration": true,
-    "noImplicitAny": false,
-    "noUncheckedIndexedAccess": false,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "useUnknownInCatchVariables": false,
-    "skipDefaultLibCheck": true
-  },
-  "exclude": ["node_modules", "dist"],
-  "include": ["src"]
+  "extends": "../../tsconfig.json"
 }

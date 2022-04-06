@@ -85,6 +85,7 @@ importers:
 
   packages/frontend:
     specifiers:
+      '@app/types': workspace:*
       '@babel/core': '>=7.11.5 <8.0.0'
       '@faker-js/faker': ^6.1.1
       '@feature-sliced/eslint-config': ^0.1.0-beta.6
@@ -105,11 +106,9 @@ importers:
       '@testing-library/react': ^13.0.0
       '@testing-library/react-hooks': ^7.0.2
       '@testing-library/user-event': ^14.0.0
-      '@types/app': workspace:@shared/types@*
       '@types/node': ^17.0.23
       '@types/react': ^17.0.43
       '@types/react-dom': ^17.0.14
-      '@types/socket.io-client': ^3.0.0
       '@typescript-eslint/eslint-plugin': ^5.17.0
       '@typescript-eslint/parser': ^5.17.0
       '@vitejs/plugin-react': ^1.3.0
@@ -156,7 +155,6 @@ importers:
       webpack: '*'
     dependencies:
       '@nanostores/react': 0.2.0_33de46f26c75888291546388c72611d1
-      '@types/socket.io-client': 3.0.0
       antd: 4.19.3_react-dom@18.0.0+react@18.0.0
       axios: 0.26.1
       fp-ts: 2.11.9
@@ -172,6 +170,7 @@ importers:
       simple-appointment-calendar: 'link:'
       socket.io-client: 4.4.1
     devDependencies:
+      '@app/types': link:../types
       '@babel/core': 7.17.8
       '@faker-js/faker': 6.1.1
       '@feature-sliced/eslint-config': 0.1.0-beta.6_27da7c18a9e07a7f66b31ef9246e97e2
@@ -191,7 +190,6 @@ importers:
       '@testing-library/react': 13.0.0_react-dom@18.0.0+react@18.0.0
       '@testing-library/react-hooks': 7.0.2_react-dom@18.0.0+react@18.0.0
       '@testing-library/user-event': 14.0.0_@testing-library+dom@8.12.0
-      '@types/app': link:../types
       '@types/node': 17.0.23
       '@types/react': 17.0.43
       '@types/react-dom': 17.0.14
@@ -4322,17 +4320,6 @@ packages:
     dependencies:
       '@types/node': 17.0.23
     dev: true
-
-  /@types/socket.io-client/3.0.0:
-    resolution: {integrity: sha512-s+IPvFoEIjKA3RdJz/Z2dGR4gLgysKi8owcnrVwNjgvc01Lk68LJDDsG2GRqegFITcxmvCMYM7bhMpwEMlHmDg==}
-    deprecated: This is a stub types definition. socket.io-client provides its own type definitions, so you do not need this installed.
-    dependencies:
-      socket.io-client: 4.4.1
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
-    dev: false
 
   /@types/source-list-map/0.1.2:
     resolution: {integrity: sha512-K5K+yml8LTo9bWJI/rECfIPrGgxdpeNbj+d53lwN4QjW1MCwlkhUms+gtdzigTeUyBr09+u8BwOIY3MXvHdcsA==}

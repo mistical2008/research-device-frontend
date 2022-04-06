@@ -16,7 +16,7 @@ import {
 } from './lib/utils'
 import 'dotenv/config'
 import { nanoid } from 'nanoid'
-import { NanoId, SocketIOType } from './types'
+import { NanoId, SocketIOType } from '@app/types'
 
 const port = process.env.BACKEND_PORT || 3000
 const server = fastify()

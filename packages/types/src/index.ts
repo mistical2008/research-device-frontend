@@ -15,10 +15,18 @@ type WebsocketMessagePayload = {
 type WebsocketMessage = {
   source: WebsocketMessageSource;
   cmd: WebsocketCmd;
-  payload: WebsocketMessagePayload;
+  payload?: WebsocketMessagePayload;
 };
 
 type WebsocketMessageHandler = (message: WebsocketMessage) => void;
+
+interface InterServerEvents {
+  ping: () => void;
+}
+
+interface SocketData {
+  sensorId: string;
+}
 
 interface ServerToClientEvents {
   message: WebsocketMessageHandler;
@@ -28,7 +36,13 @@ interface ClientToServerEvents {
   message: WebsocketMessageHandler;
 }
 
-type SocketIOType = Socket<ServerToClientEvents, ClientToServerEvents>;
+type SocketIOServerType = Socket<
+  ClientToServerEvents,
+  ServerToClientEvents,
+  InterServerEvents,
+  SocketData
+>;
+type SocketIOClientType = Socket<ServerToClientEvents, ClientToServerEvents>;
 
 export type {
   WebsocketCmd,
@@ -40,6 +54,7 @@ export type {
   WebsocketMessageSource,
   ServerToClientEvents,
   ClientToServerEvents,
-  SocketIOType,
+  SocketIOClientType,
+  SocketIOServerType,
   NanoId,
 };
