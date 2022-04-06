@@ -1,4 +1,12 @@
-import { LineChart, Line, ResponsiveContainer, XAxis, YAxis } from 'recharts'
+import {
+    LineChart,
+    Line,
+    ResponsiveContainer,
+    XAxis,
+    YAxis,
+    Tooltip,
+    Legend,
+} from 'recharts'
 
 import { DatasetBySensors } from '../experiment-runner/types'
 
@@ -9,21 +17,23 @@ type Props = {
 }
 
 function Chart({ dataset }: Props) {
+    const colors = ['#0088FE', '#FF8042']
+
     return (
-        <ResponsiveContainer width={'100%'} height={500}>
-            <LineChart width={500} height={500}>
+        <ResponsiveContainer width={'100%'} aspect={16 / 9}>
+            <LineChart style={{ width: '100%' }} margin={{ right: -380 }}>
                 <XAxis dataKey="timestamp" />
-                <YAxis dataKey="value" />
-                {Object.keys(dataset).map((sensorId) => {
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                {Object.keys(dataset).map((sensorId, idx) => {
                     return (
                         <Line
                             key={sensorId}
                             type="monotone"
                             dataKey="value"
                             data={dataset[sensorId]}
-                            stroke={`#${Math.floor(
-                                Math.random() * 16777215
-                            ).toString(16)}`}
+                            stroke={`${colors[idx]}`}
                         />
                     )
                 })}
