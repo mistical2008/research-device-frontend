@@ -15,22 +15,21 @@
         "gen:mockdb": "node -r @swc-node/register scripts/gen-mock-db.ts"
     },
     "dependencies": {
-        "@nanostores/react": "^0.2.0",
         "antd": "^4.19.3",
         "axios": "^0.26.1",
         "fp-ts": "^2.11.9",
         "framer-motion": "^6.2.8",
+        "lokijs": "^1.5.12",
         "nanoid": "^3.3.2",
-        "nanostores": "^0.5.12",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
         "react-icons": "^4.3.1",
-        "react-query": "^3.34.19",
         "react-router-dom": "^6.2.2",
         "react-virtual": "^2.10.4",
         "recharts": "^2.1.9",
         "recoil": "^0.6.1",
-        "simple-appointment-calendar": "link:",
+        "rxdb": "^11.6.0",
+        "rxjs": "^7.5.5",
         "socket.io-client": "^4.4.1"
     },
     "devDependencies": {
