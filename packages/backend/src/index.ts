@@ -21,6 +21,10 @@ import { NanoId, SocketIOType } from '@app/types'
 const port = process.env.BACKEND_PORT || 3000
 const server = fastify()
 const genRandFload10to100 = genRandFloat(10, 100)
+const intervals = [1500, 2000]
+const sensors = intervals.map((_i) => {
+    return nanoid()
+})
 
 server.register(fastifyIO, {
     cors: {
@@ -68,8 +72,8 @@ server.ready().then(() => {
             if (isClient(source) && isTestStart(cmd)) {
                 logStart()
 
-                intervals.forEach((interval) => {
-                    const sensorId = nanoid()
+                intervals.forEach((interval, idx) => {
+                    const sensorId = sensors[idx]
 
                     const clearTimerFn = runOnInterval({
                         run: (_timerObj) => {
