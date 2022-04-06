@@ -1,6 +1,10 @@
 import { Card, Col, Row } from 'antd'
 
+import { useExperiment } from 'src/features'
+import { Chart } from 'src/features/chart'
+
 function SingleExperimentPage() {
+    const { dataset } = useExperiment()
     return (
         <>
             <Row gutter={[16, 16]} style={{ height: '50%' }}>
@@ -11,6 +15,7 @@ function SingleExperimentPage() {
                     {/* https://www.ag-grid.com/react-charts/gallery/real-time-data-updates/ */}
                     <Card title="Основной график эксперимента">
                         <div id="experiment-chart" />
+                        <Chart dataset={dataset} />
                     </Card>
                 </Col>
                 <Col span={12}>
