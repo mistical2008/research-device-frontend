@@ -1,3 +1,4 @@
+import { message } from 'antd'
 import React, { useEffect } from 'react'
 import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil'
 
@@ -31,9 +32,11 @@ function ExperimentProvider({ children }: React.PropsWithChildren<{}>) {
     const [dataset, setDataset] = useRecoilState(experimentDataset)
     const bySensors = useRecoilValue(datasetBySensors)
     const { connect, close, sendMessage } = useSession(
-        () => console.log('Connected to websocket'),
+        () => {
+            message.success('Соединение установлено')
+        },
         (data) => setDataset([...dataset, data.payload]),
-        () => console.log('Disconnected from websocket')
+        () => message.warn('Соединение разорвано')
     )
     const start = () => {
         setStatus('started')
