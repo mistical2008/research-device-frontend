@@ -3,20 +3,14 @@ import { io, Socket } from 'socket.io-client'
 
 import { websocketConfig } from 'shared/config/websocket'
 
-import {
-    WebsocketMessage,
-    WebsocketMessageHandler,
-} from '@app/types'
+import { WebsocketMessage, WebsocketMessageHandler } from '@app/types'
 
 function useSession(
     onOpen: WebsocketMessageHandler,
     onMessage: WebsocketMessageHandler,
     onClose: WebsocketMessageHandler
 ) {
-    const [session, setSession] = useState(
-        // null as unknown as SocketIOClientType
-        null as unknown as Socket
-    )
+    const [session, setSession] = useState(null as unknown as Socket)
 
     type CreateHandlerArgs = {
         event: any
