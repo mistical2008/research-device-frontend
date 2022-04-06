@@ -21,7 +21,14 @@ function LayoutMain() {
 
     return (
         <Layout>
-            <Layout style={{ height: '100vh' }}>
+            <Layout
+                hasSider
+                style={{
+                    height: '100vh',
+                    // paddingRight: '300px',
+                    // paddingLeft: '300px',
+                }}
+            >
                 <Header
                     style={{
                         position: 'fixed',
@@ -62,7 +69,7 @@ function LayoutMain() {
                 </Header>
                 <Content
                     style={{
-                        padding: '0 50px',
+                        padding: '0 250px',
                         marginTop: 64,
                         backgroundColor: '#ffffff',
                     }}
@@ -77,6 +84,9 @@ function LayoutMain() {
                     reverseArrow={true}
                     theme="light"
                     style={{
+                        height: '100%',
+                        position: 'fixed',
+                        right: 0,
                         borderLeft: '1px solid #e8e8e8',
                         boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
                     }}
