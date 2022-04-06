@@ -28,17 +28,17 @@ function LayoutMain() {
     }, [location])
 
     return (
-        <Layout>
+        <Layout style={{ minHeight: '100vh', height: '100%' }}>
             <Layout
                 hasSider
                 style={{
-                    height: '100vh',
+                    minHeight: '100vh',
                 }}
             >
                 <Header
                     style={{
                         position: 'fixed',
-                        zIndex: 1,
+                        zIndex: 10,
                         width: '100%',
                         display: 'flex',
                         alignItems: 'center',
@@ -75,11 +75,12 @@ function LayoutMain() {
                 </Header>
                 <Content
                     style={{
-                        paddingRight: '250px',
-                        marginTop: 64,
+                        padding: '0 50px',
+                        margin: '64px auto 0',
                         backgroundColor: '#ffffff',
+                        minHeight: 'calc(100vh - 64px)',
+                        height: '100%',
                         maxWidth: '1170px',
-                        margin: '0 auto',
                     }}
                 >
                     <Breadcrumbs />
@@ -107,8 +108,7 @@ function LayoutMain() {
                             margin: '16px',
                         }}
                     />
-                    {/* TODO: buld device stats panel*/}
-                    <Menu>
+                    <Menu selectable={false}>
                         <Menu.Item key="model" icon={<AiOutlineHeatMap />}>
                             JY2000-2
                         </Menu.Item>

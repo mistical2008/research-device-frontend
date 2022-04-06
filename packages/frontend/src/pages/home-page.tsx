@@ -12,6 +12,7 @@ function HomePage() {
                 display: 'flex',
                 justifyContent: 'center',
                 width: '100%',
+                minHeight: '80vh',
                 height: '100%',
             }}
         >
