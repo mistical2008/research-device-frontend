@@ -98,7 +98,7 @@ function LayoutMain() {
                             key="power-state"
                             icon={<AiOutlinePoweroff />}
                         >
-                            {status ? 'Включен' : 'Выключен'}
+                            {started ? 'Включен' : 'Выключен'}
                         </Menu.Item>
                         <Menu.Item key="voltage-state" icon={<GiElectric />}>
                             11В
