@@ -142,6 +142,7 @@ importers:
       react-icons: ^4.3.1
       react-query: ^3.34.19
       react-router-dom: ^6.2.2
+      react-virtual: ^2.10.4
       recharts: ^2.1.9
       recoil: ^0.6.1
       simple-appointment-calendar: 'link:'
@@ -167,6 +168,7 @@ importers:
       react-icons: 4.3.1_react@18.0.0
       react-query: 3.34.19_react-dom@18.0.0+react@18.0.0
       react-router-dom: 6.2.2_react-dom@18.0.0+react@18.0.0
+      react-virtual: 2.10.4_react@18.0.0
       recharts: 2.1.9_bdb4aea89f170aaa1ddb585ff4b9f19e
       recoil: 0.6.1_react-dom@18.0.0+react@18.0.0
       simple-appointment-calendar: 'link:'
@@ -2380,6 +2382,10 @@ packages:
   /@popperjs/core/2.11.4:
     resolution: {integrity: sha512-q/ytXxO5NKvyT37pmisQAItCFqA7FD/vNb8dgaJy3/630Fsc+Mz9/9f2SziBoIZ30TJooXyTwZmhi1zjXmObYg==}
     dev: true
+
+  /@reach/observe-rect/1.2.0:
+    resolution: {integrity: sha512-Ba7HmkFgfQxZqqaeIWWkNK0rEhpxVQHIoVyW1YDSkGsGIXzcaW4deC8B0pZrNSSyLTdIk7y+5olKt5+g0GmFIQ==}
+    dev: false
 
   /@rollup/pluginutils/4.2.0:
     resolution: {integrity: sha512-2WUyJNRkyH5p487pGnn4tWAsxhEFKN/pT8CMgHshd5H+IXkOnKvKZwsz5ZWz+YCXkleZRAU5kwbfgF8CPfDRqA==}
@@ -13200,6 +13206,15 @@ packages:
       react: 18.0.0
       react-dom: 18.0.0_react@18.0.0
       react-lifecycles-compat: 3.0.4
+    dev: false
+
+  /react-virtual/2.10.4_react@18.0.0:
+    resolution: {integrity: sha512-Ir6+oPQZTVHfa6+JL9M7cvMILstFZH/H3jqeYeKI4MSUX+rIruVwFC6nGVXw9wqAw8L0Kg2KvfXxI85OvYQdpQ==}
+    peerDependencies:
+      react: ^16.6.3 || ^17.0.0
+    dependencies:
+      '@reach/observe-rect': 1.2.0
+      react: 18.0.0
     dev: false
 
   /react/18.0.0:

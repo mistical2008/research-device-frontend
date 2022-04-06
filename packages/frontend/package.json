@@ -27,6 +27,7 @@
         "react-icons": "^4.3.1",
         "react-query": "^3.34.19",
         "react-router-dom": "^6.2.2",
+        "react-virtual": "^2.10.4",
         "recharts": "^2.1.9",
         "recoil": "^0.6.1",
         "simple-appointment-calendar": "link:",
