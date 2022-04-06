@@ -1,4 +1,5 @@
 import { Card, Col, Row } from 'antd'
+import { Link } from 'react-router-dom'
 
 function ExperimentsPage() {
     const experiments = Array.from({ length: 11 }, (_, index) => index + 1)
@@ -8,10 +9,12 @@ function ExperimentsPage() {
         <Row gutter={16}>
             {experiments.map((experiment) => (
                 <Col span={4} key={experiment}>
-                    <Card
-                        title={`Эксперимент: ${experiment}`}
-                        style={cardStyle}
-                    ></Card>
+                    <Link to="/experiment">
+                        <Card
+                            title={`Эксперимент: ${experiment}`}
+                            style={cardStyle}
+                        ></Card>
+                    </Link>
                 </Col>
             ))}
         </Row>
