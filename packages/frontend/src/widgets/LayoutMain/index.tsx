@@ -75,9 +75,11 @@ function LayoutMain() {
                 </Header>
                 <Content
                     style={{
-                        padding: '0 250px',
+                        paddingRight: '250px',
                         marginTop: 64,
                         backgroundColor: '#ffffff',
+                        maxWidth: '1170px',
+                        margin: '0 auto',
                     }}
                 >
                     <Breadcrumbs />
