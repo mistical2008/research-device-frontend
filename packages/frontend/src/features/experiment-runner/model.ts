@@ -6,6 +6,21 @@ import { WebsocketMessage } from '@app/types'
 
 type ExperimentStatus = 'idle' | 'started' | 'stopped'
 
+const localStorageEffect =
+    (key: string) =>
+    ({ setSelf, onSet }: { setSelf: any; onSet: any }) => {
+        const savedValue = localStorage.getItem(key)
+        if (savedValue != null) {
+            setSelf(JSON.parse(savedValue))
+        }
+
+        onSet((newValue: any, _, isReset: any) => {
+            isReset
+                ? localStorage.removeItem(key)
+                : localStorage.setItem(key, JSON.stringify(newValue))
+        })
+    }
+
 const status = atom<ExperimentStatus>({
     key: 'status',
     default: 'idle',
@@ -43,6 +58,7 @@ const experimentDataset = atom<WebsocketMessage['payload'][]>({
                 )
             })
         },
+        localStorageEffect('dataset'),
     ],
 })
 
