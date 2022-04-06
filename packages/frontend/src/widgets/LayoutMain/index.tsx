@@ -1,9 +1,9 @@
 import { Layout, Menu } from 'antd'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AiOutlineHeatMap, AiOutlinePoweroff } from 'react-icons/ai'
 import { BsThermometerHalf } from 'react-icons/bs'
 import { GiElectric } from 'react-icons/gi'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 
 import { routesCollection as routes } from 'shared/config/routes'
 
@@ -19,14 +19,20 @@ function LayoutMain() {
     const { started, toggle } = useExperiment()
     const toggleExperimentStatus = () => toggle()
 
+    // TODO: move to a separate component
+    const location = useLocation()
+    const pathSnippets = location.pathname.split('/').filter((i) => i)
+
+    useEffect(() => {
+        console.log({ pathSnippets, location })
+    }, [location])
+
     return (
         <Layout>
             <Layout
                 hasSider
                 style={{
                     height: '100vh',
-                    // paddingRight: '300px',
-                    // paddingLeft: '300px',
                 }}
             >
                 <Header
@@ -41,31 +47,31 @@ function LayoutMain() {
                     <Menu
                         theme="dark"
                         mode="horizontal"
-                        defaultSelectedKeys={['1']}
+                        selectedKeys={[location.pathname]}
                         style={{ marginRight: 'auto' }}
                     >
-                        <Menu.Item key="1">
+                        <Menu.Item key={routes.home.basePath}>
                             <Link to={routes.home.basePath}>
                                 {routes.home.name}
                             </Link>
                         </Menu.Item>
-                        <Menu.Item key="2">
+                        <Menu.Item key={routes.experimentsList.basePath}>
                             <Link to={routes.experimentsList.basePath}>
                                 {routes.experimentsList.name}
                             </Link>
                         </Menu.Item>
                         {/* Появляется только после старта эксперимента */}
-                        <Menu.Item key="3">
-                            <Link to={routes.experiment.basePath}>
+                        {/* или или после перехода со стр. списка эксп. */}
+                        <Menu.Item key={routes.experiment.basePath}>
+                            <NavLink to={routes.experiment.basePath}>
                                 Текущий эксперимент
-                            </Link>
+                            </NavLink>
                         </Menu.Item>
                     </Menu>
                     <ToggleButton
                         isOn={started}
                         onClick={toggleExperimentStatus}
                     />
-                    <AiOutlinePoweroff />
                 </Header>
                 <Content
                     style={{
