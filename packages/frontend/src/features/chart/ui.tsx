@@ -6,6 +6,7 @@ import {
     YAxis,
     Tooltip,
     Legend,
+    CartesianGrid,
 } from 'recharts'
 
 import { DatasetBySensors } from '../experiment-runner/types'
@@ -21,14 +22,16 @@ function Chart({ dataset }: Props) {
 
     return (
         <ResponsiveContainer width={'100%'} aspect={16 / 9}>
-            <LineChart style={{ width: '100%' }} margin={{ right: -380 }}>
-                <XAxis dataKey="timestamp" />
-                <YAxis />
+            <LineChart width={500} height={300} margin={{ right: 0 }}>
+                <XAxis dataKey="timestamp" scale={'time'} />
+                <YAxis dataKey="value" />
                 <Tooltip />
                 <Legend />
+                <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
                 {Object.keys(dataset).map((sensorId, idx) => {
                     return (
                         <Line
+                            name={`sensor: ${sensorId}`}
                             key={sensorId}
                             type="monotone"
                             dataKey="value"
