@@ -22,3 +22,11 @@
     - `typescript`
     - `socket.io-client` (websockets)
     - `vitejs` (bundler)
+- Пакетный менеджер: `pnpm`
+
+## Старт проекта
+```sh
+pnpm i
+pnpm dev
+```
+После установки из запуска можно тестировать работу фронтенда.
