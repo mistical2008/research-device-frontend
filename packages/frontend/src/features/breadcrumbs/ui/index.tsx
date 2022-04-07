@@ -1,7 +1,7 @@
 import { Breadcrumb } from 'antd'
 import { Link } from 'react-router-dom'
 
-import { routesCollection as routes } from 'shared/config/routes'
+import { routesCollection as routes } from 'pages'
 
 const Breadcrumbs = () => {
     // TODO: implement changing on navigation

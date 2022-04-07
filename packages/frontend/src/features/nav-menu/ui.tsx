@@ -2,7 +2,7 @@ import { Menu } from 'antd'
 import { useEffect } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 
-import { routes as routesConfig } from 'shared/config/routes'
+import { routes as routesConfig } from 'pages'
 
 function MainNavigation() {
     const location = useLocation()
@@ -22,7 +22,7 @@ function MainNavigation() {
     useEffect(() => {
         const pathSnippets = location.pathname.split('/').filter((i) => i)
         console.log({ pathSnippets, location, params })
-    }, [location])
+    }, [location, params])
 
     return (
         <Menu
