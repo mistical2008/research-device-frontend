@@ -22,6 +22,7 @@ function DataTable({ dataset = [] }: Props) {
 
     return (
         <Table
+            rowKey="timestamp"
             bordered
             // @ts-expect-error
             dataSource={dataset}
