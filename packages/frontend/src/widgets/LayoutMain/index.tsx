@@ -11,6 +11,7 @@ import { ToggleButton } from 'entities/ToggleButton'
 
 import { Breadcrumbs } from 'features'
 import { useExperiment } from 'features/experiment-runner'
+import { MainNavigation } from 'src/features/nav-menu'
 
 const { Header, Content, Sider } = Layout
 
@@ -18,14 +19,6 @@ function LayoutMain() {
     const [asideCollapsed, setAsideCollapsed] = useState(false)
     const { started, toggle } = useExperiment()
     const toggleExperimentStatus = () => toggle()
-
-    // TODO: move to a separate component
-    const location = useLocation()
-    const pathSnippets = location.pathname.split('/').filter((i) => i)
-
-    useEffect(() => {
-        console.log({ pathSnippets, location })
-    }, [location])
 
     return (
         <Layout style={{ minHeight: '100vh', height: '100%' }}>
@@ -44,30 +37,7 @@ function LayoutMain() {
                         alignItems: 'center',
                     }}
                 >
-                    <Menu
-                        theme="dark"
-                        mode="horizontal"
-                        selectedKeys={[location.pathname]}
-                        style={{ marginRight: 'auto' }}
-                    >
-                        <Menu.Item key={routes.home.basePath}>
-                            <Link to={routes.home.basePath}>
-                                {routes.home.name}
-                            </Link>
-                        </Menu.Item>
-                        <Menu.Item key={routes.experimentsList.basePath}>
-                            <Link to={routes.experimentsList.basePath}>
-                                {routes.experimentsList.name}
-                            </Link>
-                        </Menu.Item>
-                        {/* Появляется только после старта эксперимента */}
-                        {/* или или после перехода со стр. списка эксп. */}
-                        <Menu.Item key={routes.experiment.basePath}>
-                            <NavLink to={routes.experiment.basePath}>
-                                Текущий эксперимент
-                            </NavLink>
-                        </Menu.Item>
-                    </Menu>
+                    <MainNavigation />
                     <ToggleButton
                         isOn={started}
                         onClick={toggleExperimentStatus}
