@@ -58,8 +58,8 @@ importers:
 
   packages/backend:
     specifiers:
+      '@app/types': workspace:*
       '@swc-node/register': ^1.4.2
-      '@types/app': workspace:@shared/types@*
       '@types/node': ^17.0.23
       dotenv: ^16.0.0
       fastify: ^3.27.4
@@ -77,8 +77,8 @@ importers:
       nanoid: 3.3.2
       socket.io: 4.4.1
     devDependencies:
+      '@app/types': link:../types
       '@swc-node/register': 1.4.2
-      '@types/app': link:../types
       '@types/node': 17.0.23
       nodemon: 2.0.15
       typescript: 4.6.3
@@ -166,7 +166,7 @@ importers:
       react-icons: 4.3.1_react@18.0.0
       react-router-dom: 6.2.2_react-dom@18.0.0+react@18.0.0
       react-virtual: 2.10.4_react@18.0.0
-      recharts: 2.1.9_react-dom@18.0.0+react@18.0.0
+      recharts: 2.1.9_bdb4aea89f170aaa1ddb585ff4b9f19e
       recoil: 0.6.1_react-dom@18.0.0+react@18.0.0
       rxdb: 11.6.0_rxjs@7.5.5
       rxjs: 7.5.5
@@ -13813,7 +13813,7 @@ packages:
       throttle-debounce: 3.0.1
     dev: true
 
-  /react-smooth/2.0.0_react-dom@18.0.0+react@18.0.0:
+  /react-smooth/2.0.0_bdb4aea89f170aaa1ddb585ff4b9f19e:
     resolution: {integrity: sha512-wK4dBBR6P21otowgMT9toZk+GngMplGS1O5gk+2WSiHEXIrQgDvhR5IIlT74Vtu//qpTcipkgo21dD7a7AUNxw==}
     peerDependencies:
       prop-types: ^15.6.0
@@ -13821,6 +13821,7 @@ packages:
       react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
       fast-equals: 2.0.4
+      prop-types: 15.8.1
       raf: 3.4.1
       react: 18.0.0
       react-dom: 18.0.0_react@18.0.0
@@ -13966,7 +13967,7 @@ packages:
       decimal.js-light: 2.5.1
     dev: false
 
-  /recharts/2.1.9_react-dom@18.0.0+react@18.0.0:
+  /recharts/2.1.9_bdb4aea89f170aaa1ddb585ff4b9f19e:
     resolution: {integrity: sha512-VozH5uznUvGqD7n224FGj7cmMAenlS0HPCs+7r2HeeHiQK6un6z0CTZfWVAB860xbcr4m+BN/EGMPZmYWd34Rg==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -13986,7 +13987,7 @@ packages:
       react-dom: 18.0.0_react@18.0.0
       react-is: 16.13.1
       react-resize-detector: 6.7.8_react-dom@18.0.0+react@18.0.0
-      react-smooth: 2.0.0_react-dom@18.0.0+react@18.0.0
+      react-smooth: 2.0.0_bdb4aea89f170aaa1ddb585ff4b9f19e
       recharts-scale: 0.4.5
       reduce-css-calc: 2.1.8
     transitivePeerDependencies:
