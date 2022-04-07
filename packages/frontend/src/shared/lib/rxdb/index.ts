@@ -26,7 +26,7 @@ const datasetSchema = {
             description: 'The unique id of the sensor',
         },
         timestamp: {
-            type: 'number',
+            type: 'integer',
             description: 'timestamp of the measurement',
         },
         value: {
@@ -44,4 +44,9 @@ const datasetsCollection = await database.addCollections({
 })
 console.dir(database.collections.sensors.name)
 
-await datasetsCollection.insert({ sensoId: 'sensor1', timestamp: 1, value: 1 })
+await datasetsCollection.sensors.insert({
+    sensoId: 'sensor1',
+    timestamp: 1,
+    value: 1.03,
+})
+console.dir(datasetsCollection.sensors.exportJSON())
