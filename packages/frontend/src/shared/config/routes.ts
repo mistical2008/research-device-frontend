@@ -1,5 +1,7 @@
 import { lazy } from 'react'
 
+import { withPageLoading } from 'src/pages/lib/providers/with-page-loading'
+
 const routesCollection = {
     home: {
         basePath: '/',
@@ -20,16 +22,16 @@ const ExperimentsPage = lazy(() => import('pages/experiments-page'))
 const SingleExperimentPage = lazy(() => import('pages/single-experiment-page'))
 
 const routes = [
-    { path: '/', name: 'Главная', element: HomePage },
+    { path: '/', name: 'Главная', element: withPageLoading(HomePage) },
     {
         path: '/experiments',
         name: 'Список экспериментов',
-        element: ExperimentsPage,
+        element: withPageLoading(ExperimentsPage),
     },
     {
         path: '/experiments/:exId',
         name: 'Эксперимент :exId',
-        element: SingleExperimentPage,
+        element: withPageLoading(SingleExperimentPage),
     },
 ]
 

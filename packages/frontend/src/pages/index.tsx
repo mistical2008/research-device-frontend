@@ -4,8 +4,6 @@ import { routes } from 'shared/config/routes'
 
 import { LayoutMain } from 'src/widgets'
 
-import { withPageLoading } from './lib/providers/with-page-loading'
-
 function Routing() {
     const homeRoute = routes.find((route) => route.path === '/')
 
@@ -18,7 +16,7 @@ function Routing() {
                         index={route.path === homeRoute?.path}
                         key={route.path}
                         path={route.path}
-                        element={withPageLoading(route.element)}
+                        element={route.element}
                     />
                 ))}
                 <Route path="*" element={<div> Not found: 404 </div>} />
