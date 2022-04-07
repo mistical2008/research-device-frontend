@@ -1,5 +1,5 @@
 import { message } from 'antd'
-import React, { useEffect, useMemo } from 'react'
+import { createContext, useContext, useEffect, useMemo } from 'react'
 import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil'
 
 import { useSession } from 'shared/api/websocket'
@@ -27,12 +27,10 @@ interface ActionsContext {
     toggle: () => void
 }
 
-const ExperimentStateContext = React.createContext<StateContext | null>(null)
+const ExperimentStateContext = createContext<StateContext | null>(null)
 ExperimentStateContext.displayName = 'ExperimentStateContext'
 
-const ExperimentActionsContext = React.createContext<ActionsContext | null>(
-    null
-)
+const ExperimentActionsContext = createContext<ActionsContext | null>(null)
 ExperimentActionsContext.displayName = 'ExperimentActionsContext'
 
 function ExperimentProvider({ children }: React.PropsWithChildren<{}>) {
@@ -42,10 +40,10 @@ function ExperimentProvider({ children }: React.PropsWithChildren<{}>) {
     const bySensors = useRecoilValue(datasetBySensors)
     const { connect, close, sendMessage } = useSession(
         () => {
-            message.success('Соединение установлено')
+            void message.success('Соединение установлено')
         },
         (data) => setDataset([...dataset, data.payload]),
-        () => message.warn('Соединение разорвано')
+        () => void message.warn('Соединение разорвано')
     )
     const start = () => {
         setStatus('started')
@@ -76,7 +74,7 @@ function ExperimentProvider({ children }: React.PropsWithChildren<{}>) {
             stop,
             toggle,
         }),
-        [started, dataset]
+        [toggle, start, stop]
     )
     const stateValues = useMemo<StateContext>(
         () => ({
@@ -84,7 +82,7 @@ function ExperimentProvider({ children }: React.PropsWithChildren<{}>) {
             dataset,
             datasetBySensors: bySensors,
         }),
-        [started, dataset]
+        [started, dataset, bySensors]
     )
 
     return (
@@ -97,7 +95,7 @@ function ExperimentProvider({ children }: React.PropsWithChildren<{}>) {
 }
 
 function useExperimentActions() {
-    const context = React.useContext(ExperimentActionsContext)
+    const context = useContext(ExperimentActionsContext)
     if (!context) {
         throw new Error(
             `hook 'useExperimentActions' must be used withing the 'ExperimentActionsContext'`
@@ -107,7 +105,7 @@ function useExperimentActions() {
 }
 
 function useExperimentState() {
-    const context = React.useContext(ExperimentStateContext)
+    const context = useContext(ExperimentStateContext)
     if (!context) {
         throw new Error(
             `hook 'useExperimentState' must be used withing the 'ExperimentStateContext'`
