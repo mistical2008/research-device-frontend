@@ -43,7 +43,6 @@ function DataLog({ dataset = [], height = 300 }: Props) {
                                 const item = dataset[virtualRow.index]
 
                                 return (
-                                    <>
                                         <div
                                             key={virtualRow.index}
                                             style={{
@@ -67,7 +66,6 @@ function DataLog({ dataset = [], height = 300 }: Props) {
                                                 <div>{item?.value}</div>
                                             </List.Item>
                                         </div>
-                                    </>
                                 )
                             })}
                         </div>

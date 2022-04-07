@@ -7,10 +7,12 @@ function ExperimentsPage() {
 
     return (
         <Row gutter={16}>
-            {experiments.map((experiment) => (
+            {experiments.map((experiment, idx) => (
                 <Col span={4} key={experiment}>
-                    <Link to="/experiments/1">
+                    {/* TODO: use current experiment id instead of idx */}
+                    <Link to={`/experiments/${idx + 1}`}>
                         <Card
+                            // TODO: use route.name instead of idx and replace :exId with the current experiment id
                             title={`Эксперимент: ${experiment}`}
                             style={cardStyle}
                         ></Card>

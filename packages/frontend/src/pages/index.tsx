@@ -13,6 +13,7 @@ function Routing() {
         <Routes>
             <Route path={homeRoute?.path} element={<LayoutMain />}>
                 {routes.map((route) => (
+                    // TODO: if route.path matches :exId than replace :exId with current experiment id
                     <Route
                         index={route.path === homeRoute?.path}
                         key={route.path}

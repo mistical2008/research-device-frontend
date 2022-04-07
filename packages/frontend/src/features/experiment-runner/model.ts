@@ -1,4 +1,4 @@
-import { atom, selector } from 'recoil'
+import { atom, atomFamily, selector, selectorFamily } from 'recoil'
 
 import consoleConf from 'shared/config/console'
 
@@ -6,6 +6,16 @@ import { WebsocketMessage } from '@app/types'
 
 type ExperimentStatus = 'idle' | 'started' | 'stopped'
 
+/**
+ * Utils
+ */
+function findItemById<T, D>(array: T[], id: D): T | undefined {
+    return array.find((item) => item.id === id)
+}
+
+/**
+ * Atom effects
+ */
 const localStorageEffect =
     (key: string) =>
     ({ setSelf, onSet }: { setSelf: any; onSet: any }) => {
@@ -21,6 +31,9 @@ const localStorageEffect =
         })
     }
 
+/**
+ * States
+ */
 const status = atom<ExperimentStatus>({
     key: 'status',
     default: 'idle',
@@ -78,4 +91,58 @@ const datasetBySensors = selector({
     },
 })
 
-export { status, isStarted, experimentDataset, datasetBySensors }
+type ExperimentId = number
+
+type Experiment = {
+    id: ExperimentId
+    createdAt: Date
+    dataset: WebsocketMessage['payload'][]
+}
+
+type ExperimentsList = {
+    list: Experiment[] | []
+    currentId: ExperimentId | null
+}
+
+const experiments = atom<ExperimentsList>({
+    key: 'experiments',
+    default: {
+        list: [],
+        currentId: null,
+    },
+    effects: [
+        ({ onSet }) => {
+            onSet((experiments) => {
+                console.debug(
+                    '%cExperiments: %o',
+                    consoleConf.styles.stateActions.experiment,
+                    experiments
+                )
+            })
+        },
+        localStorageEffect('experiments'),
+    ],
+})
+
+const experiment = atomFamily({
+    key: 'experiment',
+    default: selectorFamily({
+        key: 'experiment/default',
+        get:
+            (id) =>
+            ({ get }) => {
+                const experimentsList = get(experiments)
+                const experiment = findItemById(experimentsList.list, id)
+                return experiment ?? null
+            },
+    }),
+})
+
+export {
+    status,
+    isStarted,
+    experimentDataset,
+    datasetBySensors,
+    experiments,
+    experiment,
+}

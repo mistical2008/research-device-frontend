@@ -7,6 +7,13 @@ import { routes as routesConfig } from 'shared/config/routes'
 function MainNavigation() {
     const location = useLocation()
     const params = useParams()
+    // TODO: use for :exId current experiment id from recoil store
+    // TODO: replace :exId in the route.name and route.path with the current experiment id
+    // route == '/experiments/:exId'
+    // route == '/experiments/:exId/edit'
+    // route == '/experiments/:exId/delete'
+    // params.exId: string == '1'
+    // route.replace(`:${paramskey}`, params[key])
     // const routes = routesConfig.map(route => ({
     //     ...route,
     //     path: route.path.replace(`${}`, ''),
