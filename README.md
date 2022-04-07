@@ -25,7 +25,7 @@
 - Пакетный менеджер: `pnpm`
 
 ## Старт проекта
-В `packages/backend` переименовать `.env.example` в `.env`
+В `packages/backend` и `packages/frontend` переименовать `.env.example` в `.env`
 
 ```sh
 # В консоли запустить установку зависимостей и старт проекта
