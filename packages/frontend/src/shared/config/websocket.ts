@@ -1,4 +1,4 @@
 const websocketConfig = {
-    baseUrl: 'localhost:8900',
+    baseUrl: `localhost:${import.meta.env.VITE_BACKEND_PORT || 7777}`,
 }
 export { websocketConfig }

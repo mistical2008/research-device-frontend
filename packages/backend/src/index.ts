@@ -16,9 +16,9 @@ import {
 } from './lib/utils'
 import 'dotenv/config'
 import { nanoid } from 'nanoid'
-import { NanoId, SocketIOType } from '@app/types'
+import { NanoId, SocketIOServerType } from '@app/types'
 
-const port = process.env.BACKEND_PORT || 3000
+const port = process.env.BACKEND_PORT || 7777
 const server = fastify()
 const genRandFload10to100 = genRandFloat(10, 100)
 const intervals = [10, 200]
@@ -33,7 +33,7 @@ server.register(fastifyIO, {
     },
 })
 
-function sendSensorsData(socket: SocketIOType, sensorId: NanoId): void {
+function sendSensorsData(socket: SocketIOServerType, sensorId: NanoId): void {
     emitData(socket, 'message', {
         payload: {
             sensorId,
@@ -55,11 +55,6 @@ server.ready().then(() => {
     server.io.on('connection', (socket) => {
         const clearTimerFns: ReturnType<typeof stopTimer>[] = []
         const intervals = [1500, 2000]
-
-        socket.emit('msg/server/connect', {
-            id: socket.id,
-            timestamp: Date.now(),
-        })
 
         socket.on('message', ({ cmd, source }) => {
             if (isClient(source) && isTestStop(cmd)) {
@@ -86,19 +81,10 @@ server.ready().then(() => {
                 })
             }
         })
-
-        socket.on('msg/client', (cmd) => {
-            console.log('msg/client', cmd)
-        })
     })
 
-    server.io.on('disconnect', (socket) => {
+    server.io.on('disconnect', (_socket) => {
         console.log('disconnect')
-
-        socket.emit('msg/server/disconnect', {
-            id: socket.id,
-            timestamp: Date.now(),
-        })
     })
 })
 
