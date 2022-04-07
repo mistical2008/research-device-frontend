@@ -1,12 +1,12 @@
 import { Card, Col, Row } from 'antd'
 
-import { useExperiment } from 'src/features'
-import { Chart } from 'src/features/chart'
-import { DataLog } from 'src/features/data-log'
-import { DataTable } from 'src/features/data-table'
+import { useExperimentState } from 'features'
+import { Chart } from 'features/chart'
+import { DataLog } from 'features/data-log'
+import { DataTable } from 'features/data-table'
 
 function SingleExperimentPage() {
-    const { datasetBySensors, dataset } = useExperiment()
+    const { datasetBySensors, dataset } = useExperimentState()
     return (
         <Row gutter={[16, 16]} style={{ height: '50%' }}>
             <Col span={24}>

@@ -1,5 +1,5 @@
 import { message } from 'antd'
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil'
 
 import { useSession } from 'shared/api/websocket'
@@ -15,16 +15,25 @@ import { WebsocketMessage } from '@app/types'
 import { datasetBySensors } from './model'
 import { DatasetBySensors } from './types'
 
-interface ContextValue {
-    start: () => void
-    stop: () => void
-    toggle: () => void
+interface StateContext {
     started: boolean
     dataset: WebsocketMessage['payload'][]
     datasetBySensors: DatasetBySensors
 }
-const ExperimentContext = React.createContext<ContextValue | null>(null)
-ExperimentContext.displayName = 'ExperimentContext'
+
+interface ActionsContext {
+    start: () => void
+    stop: () => void
+    toggle: () => void
+}
+
+const ExperimentStateContext = React.createContext<StateContext | null>(null)
+ExperimentStateContext.displayName = 'ExperimentStateContext'
+
+const ExperimentActionsContext = React.createContext<ActionsContext | null>(
+    null
+)
+ExperimentActionsContext.displayName = 'ExperimentActionsContext'
 
 function ExperimentProvider({ children }: React.PropsWithChildren<{}>) {
     const setStatus = useSetRecoilState(status)
@@ -61,30 +70,50 @@ function ExperimentProvider({ children }: React.PropsWithChildren<{}>) {
         }
     }, [])
 
+    const stateActions = useMemo<ActionsContext>(
+        () => ({
+            start,
+            stop,
+            toggle,
+        }),
+        [started, dataset]
+    )
+    const stateValues = useMemo<StateContext>(
+        () => ({
+            started,
+            dataset,
+            datasetBySensors: bySensors,
+        }),
+        [started, dataset]
+    )
+
     return (
-        <ExperimentContext.Provider
-            value={{
-                started,
-                dataset,
-                start,
-                stop,
-                toggle,
-                datasetBySensors: bySensors,
-            }}
-        >
-            {children}
-        </ExperimentContext.Provider>
+        <ExperimentStateContext.Provider value={stateValues}>
+            <ExperimentActionsContext.Provider value={stateActions}>
+                {children}
+            </ExperimentActionsContext.Provider>
+        </ExperimentStateContext.Provider>
     )
 }
 
-function useExperiment() {
-    const context = React.useContext(ExperimentContext)
+function useExperimentActions() {
+    const context = React.useContext(ExperimentActionsContext)
     if (!context) {
         throw new Error(
-            `hook 'useExperiment' must be used withing the 'ExperimentProvider'`
+            `hook 'useExperimentActions' must be used withing the 'ExperimentActionsContext'`
         )
     }
     return context
 }
 
-export { ExperimentProvider, useExperiment }
+function useExperimentState() {
+    const context = React.useContext(ExperimentStateContext)
+    if (!context) {
+        throw new Error(
+            `hook 'useExperimentState' must be used withing the 'ExperimentStateContext'`
+        )
+    }
+    return context
+}
+
+export { ExperimentProvider, useExperimentActions, useExperimentState }

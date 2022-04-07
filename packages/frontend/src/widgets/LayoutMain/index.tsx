@@ -1,23 +1,25 @@
 import { Layout, Menu } from 'antd'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { AiOutlineHeatMap, AiOutlinePoweroff } from 'react-icons/ai'
 import { BsThermometerHalf } from 'react-icons/bs'
 import { GiElectric } from 'react-icons/gi'
-import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
-
-import { routesCollection as routes } from 'shared/config/routes'
+import { Outlet } from 'react-router-dom'
 
 import { ToggleButton } from 'entities/ToggleButton'
 
 import { Breadcrumbs } from 'features'
-import { useExperiment } from 'features/experiment-runner'
+import {
+    useExperimentActions,
+    useExperimentState,
+} from 'features/experiment-runner'
 import { MainNavigation } from 'src/features/nav-menu'
 
 const { Header, Content, Sider } = Layout
 
 function LayoutMain() {
     const [asideCollapsed, setAsideCollapsed] = useState(false)
-    const { started, toggle } = useExperiment()
+    const { toggle } = useExperimentActions()
+    const { started } = useExperimentState()
     const toggleExperimentStatus = () => toggle()
 
     return (
