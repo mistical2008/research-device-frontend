@@ -9,7 +9,7 @@ function ExperimentsPage() {
         <Row gutter={16}>
             {experiments.map((experiment) => (
                 <Col span={4} key={experiment}>
-                    <Link to="/experiment">
+                    <Link to="/experiments/1">
                         <Card
                             title={`Эксперимент: ${experiment}`}
                             style={cardStyle}

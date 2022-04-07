@@ -1,9 +1,5 @@
 import { lazy } from 'react'
 
-import ExperimentsPage from 'src/pages/experiments-page'
-import HomePage from 'src/pages/home-page'
-import SingleExperimentPage from 'src/pages/single-experiment-page'
-
 const routesCollection = {
     home: {
         basePath: '/',

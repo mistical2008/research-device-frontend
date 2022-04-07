@@ -20,6 +20,7 @@ function Routing() {
                         element={withPageLoading(route.element)}
                     />
                 ))}
+                <Route path="*" element={<div> Not found: 404 </div>} />
             </Route>
         </Routes>
     )
